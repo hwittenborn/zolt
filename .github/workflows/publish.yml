@@ -17,7 +17,7 @@ jobs:
         run: cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version' | echo "VERSION=$(cat)" >> "${GITHUB_OUTPUT}"
       - name: Get crates.io crate version
         id: remote-version
-        run: curl 'https://index.crates.io/co/lo/colored' | jq -r '.vers' | tail -n 1 | echo "VERSION=$(cat)" >> "${GITHUB_OUTPUT}"
+        run: curl 'https://index.crates.io/zo/lt/zolt' | jq -r '.vers' | tail -n 1 | echo "VERSION=$(cat)" >> "${GITHUB_OUTPUT}"
       - name: Check if crates.io version is older than local version
         id: needs-update
         run: |
