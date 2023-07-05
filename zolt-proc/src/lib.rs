@@ -23,8 +23,11 @@ pub fn msg_macros(tokens: TokenStream) -> TokenStream {
             #[macro_export]
             macro_rules! {name} {{
                 ($($arg:tt)*) => {{{{
-                    use $crate::colored::Colorize;
-                    {fmt_macro}!("{{}} {{}}", {msg_prefix}.{msg_color}.bold(), format!($($arg)*));
+                    let prefix = {{
+                        use $crate::colored::Colorize;
+                        {msg_prefix}.{msg_color}().bold()
+                    }};
+                    {fmt_macro}!("{{}}: {{}}", prefix, format!($($arg)*));
                 }}}}
             }}
         "#,

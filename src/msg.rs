@@ -29,6 +29,16 @@
 //!
 //! If this behavior isn't desired, you can obtain the formatted string from the `*fmt` macros and
 //! then do whatever you need with them.
+//!
+//! # Coloring message contents
+//! The contents of messages can be colored by using [`colored::Colorize`], which is re-exported
+//! under `zolt::Colorize`:
+//!
+//! ```rust
+//! use zolt::Colorize;
+//!
+//! zolt::infoln!("Here's a message with {} output!", "colored".blue());
+//! ```
 #[doc(inline)]
 pub use zolt_macros::{
     debug, debugfmt, debugln, err, errfmt, errln, info, infofmt, infoln, warn, warnfmt, warnln,

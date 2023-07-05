@@ -23,6 +23,16 @@
 //! CLI coloring can also be manually set on and off through the [`show_color`] function.
 pub mod msg;
 
+pub use colored;
+
+#[doc(no_inline)]
+pub use colored::Colorize;
+
+#[doc(no_inline)]
+pub use msg::{
+    debug, debugfmt, debugln, err, errfmt, errln, info, infofmt, infoln, warn, warnfmt, warnln,
+};
+
 /// Whether coloring should be on or off.
 ///
 /// If this function is never called, coloring behavior is automatically decided
@@ -31,11 +41,3 @@ pub mod msg;
 pub fn show_color(show: bool) {
     colored::control::set_override(show);
 }
-
-#[doc(no_inline)]
-pub use msg::{
-    debug, debugfmt, debugln, err, errfmt, errln, info, infofmt, infoln, warn, warnfmt, warnln,
-};
-
-#[doc(hidden)]
-pub use colored;
