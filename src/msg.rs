@@ -1,72 +1,35 @@
 //! Utilities for general CLI messaging.
 //!
-//! For general messaging needs, use one of the available macros:
+//! It's recommended to call these macros from the root of the crate instead of
+//! calling them from here. I.e. call [`crate::info!`] instead of
+//! [`crate::msg::info!`].
 //!
-//! - [`info!`]
-//! - [`warn!`]
-//! - [`err!`]
-//! - [`debug!`]
+//! # Message types
+//! There are four messaging types available:
+//! - Info: [`info!`], [`infoln!`], [`infofmt!`]
+//! - Warning: [`warn!`], [`warnln!`], [`warnfmt!`]
+//! - Error: [`err!`], [`errln!`], [`errfmt!`]
+//! - Debug: [`debug!`], [`debugln!`], [`debugfmt!`]
 //!
-//! It's recommended that the items in this module are called from the
-//! [crate root](crate#macros):
+//! # Macro types
+//! The first form of these macros ([`info!`], [`warn!`], [`err!`], [`debug!`])
+//! all behave like [`print!`] does - printing to the terminal *without* a
+//! newline.
 //!
-//! ```rust
-//! /// Call the `info` macro like this:
-//! zolt::info!("Application started.");
+//! The second form of these macros ([`infoln!`], [`warnln!`], [`errln!`],
+//! [`debugln!`]) all behave line [`println!`] does - printing to the terminal
+//! *with* a newline.
 //!
-//! /// Call the `warn` macro like this:
-//! zolt::warn!("Application is still starting...");
+//! The last form of these macros ([`infofmt!`], [`warnfmt!`], [`errfmt!`],
+//! [`debugfmt!`]) all behave like [`format!`] does - returning the formatted
+//! string directly.
 //!
-//! /// Call the `err` macro like this:
-//! zolt::err!("Application could not start!");
+//! # Message behavior
+//! The Info macros print to [`std::io::Stdout`], while all the rest print to [`std::io::Stderr`].
 //!
-//! /// call the `debug` macro like this:
-//! zolt::debug!("Application shutting down...");
-//! ```
-
+//! If this behavior isn't desired, you can obtain the formatted string from the `*fmt` macros and
+//! then do whatever you need with them.
 #[doc(inline)]
-pub use crate::{debug, err, info, warn};
-
-/// Print a message suitable for general information.
-///
-/// It takes the same arguments as the [`format!`] macro.
-#[macro_export]
-macro_rules! info {
-    ($($arg:tt)*) => {{
-        use $crate::colored::Colorize;
-        println!("{} {}", "Info:".cyan().bold(), format!($($arg)*));
-    }}
-}
-
-/// Print a message suitable for warning information.
-///
-/// It takes the same arguments as the [`format!`] macro.
-#[macro_export]
-macro_rules! warn {
-    ($($arg:tt)*) => {{
-        use $crate::colored::Colorize;
-        println!("{} {}", "Warning:".bright_yellow().bold(), format!($($arg)*));
-    }}
-}
-
-/// Print a message suitable for error information.
-///
-/// It takes the same arguments as the [`format!`] macro.
-#[macro_export]
-macro_rules! err {
-    ($($arg:tt)*) => {{
-        use $crate::colored::Colorize;
-        println!("{} {}", "Error:".red().bold(), format!($($arg)*));
-    }}
-}
-
-/// Print a message suitable for debug information.
-///
-/// It takes the same arguments as the [`format!`] macro.
-#[macro_export]
-macro_rules! debug {
-    ($($arg:tt)*) => {{
-        use $crate::colored::Colorize;
-        println!("{} {}", "Debug:".green().bold(), format!($($arg)*));
-    }}
-}
+pub use zolt_macros::{
+    debug, debugfmt, debugln, err, errfmt, errln, info, infofmt, infoln, warn, warnfmt, warnln,
+};

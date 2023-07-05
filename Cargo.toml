@@ -1,14 +1,27 @@
-[package]
-name = "zolt"
-version = "0.6.0"
+[workspace]
+members = ["zolt-macros", "zolt-proc"]
+
+[workspace.package]
+version = "0.7.0"
 authors = ["Hunter Wittenborn <hunter@hunterwittenborn.com>"]
-description = "Beautiful and user-friendly terminal output"
 edition = "2021"
 repository = "https://github.com/hwittenborn/zolt"
 license = "GPL-3.0-or-later"
 
-[lib]
+[workspace.dependencies]
+colored = "2"
+zolt-macros = { version = "=0.7.0", path = "zolt-macros/" }
+zolt-proc = { version = "=0.7.0", path = "zolt-proc/" }
+
+[package]
 name = "zolt"
+description = "Beautiful and user-friendly terminal output"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
 
 [dependencies]
-colored = "2"
+colored.workspace = true
+zolt-macros.workspace = true

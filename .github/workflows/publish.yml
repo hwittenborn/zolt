@@ -2,7 +2,11 @@ name: Publish
 on:
   push:
     branches: [main]
+env:
+  CARGO_REGISTRY_TOKEN: "${{ secrets.CARGO_REGISTRY_TOKEN }}"
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 permissions:
+  actions: write
   contents: write
 
 jobs:
@@ -32,10 +36,12 @@ jobs:
       - name: Create GitHub release
         if: steps.needs-update.outputs.UPDATE == 'true'
         run: gh release create "v${{ steps.local-version.outputs.VERSION }}" -t "v${{ steps.local-version.outputs.VERSION }}" -n "$(parse-changelog CHANGELOG.md "${{ steps.local-version.outputs.VERSION }}")"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Publish to crates.io
+      - name: Publish 'zolt-proc' to crates.io
         if: steps.needs-update.outputs.UPDATE == 'true'
-        run: cargo publish
-        env:
-          CARGO_REGISTRY_TOKEN: "${{ secrets.CARGO_REGISTRY_TOKEN }}"
+        run: cargo publish -p zolt-proc
+      - name: Publish 'zolt-macros' to crates.io
+        if: steps.needs-update.outputs.UPDATE == 'true'
+        run: cargo publish -p zolt-macros
+      - name: Publish 'zolt' to crates.io
+        if: steps.needs-update.outputs.UPDATE == 'true'
+        run: cargo publish -p zolt

@@ -1,0 +1,11 @@
+[package]
+name = "zolt-proc"
+description = "Proc macros for the 'zolt' crate"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[lib]
+proc-macro = true
