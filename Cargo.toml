@@ -1,0 +1,14 @@
+[package]
+name = "zolt"
+version = "0.1.0"
+authors = ["Hunter Wittenborn <hunter@hunterwittenborn.com>"]
+description = "Beautiful and user-friendly terminal output"
+edition = "2021"
+repository = "https://github.com/hwittenborn/zolt"
+license = "GPL-3.0-or-later"
+
+[lib]
+name = "zolt"
+
+[dependencies]
+colored = "2"
