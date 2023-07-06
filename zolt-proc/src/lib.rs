@@ -27,7 +27,7 @@ pub fn msg_macros(tokens: TokenStream) -> TokenStream {
                         use $crate::colored::Colorize;
                         {msg_prefix}.{msg_color}().bold()
                     }};
-                    {fmt_macro}!("{{}}: {{}}", prefix, format!($($arg)*));
+                    {fmt_macro}!("{{}}: {{}}", prefix, format!($($arg)*))
                 }}}}
             }}
         "#,

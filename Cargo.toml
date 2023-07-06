@@ -2,7 +2,7 @@
 members = ["zolt-macros", "zolt-proc"]
 
 [workspace.package]
-version = "0.7.1"
+version = "0.7.2"
 authors = ["Hunter Wittenborn <hunter@hunterwittenborn.com>"]
 edition = "2021"
 repository = "https://github.com/hwittenborn/zolt"
@@ -10,8 +10,8 @@ license = "GPL-3.0-or-later"
 
 [workspace.dependencies]
 colored = "2"
-zolt-macros = { version = "=0.7.1", path = "zolt-macros/" }
-zolt-proc = { version = "=0.7.1", path = "zolt-proc/" }
+zolt-macros = { version = "=0.7.2", path = "zolt-macros/" }
+zolt-proc = { version = "=0.7.2", path = "zolt-proc/" }
 
 [package]
 name = "zolt"

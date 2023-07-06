@@ -1,3 +1,7 @@
+# 0.7.2
+## Fixed
+- Make `*fmt!` macros return a `String`.
+
 # 0.7.1
 ## Changed
 - Expose `colored` and `Colored::Colorize` from the crate.
